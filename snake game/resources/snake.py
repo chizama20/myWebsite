@@ -9,7 +9,7 @@ BACKGROUND_COLOR = (110, 110, 5)
 
 class Apple: # Apple class, key thing for each object you make in these things.
     def __init__(self, parent_screen): # Initializing the apple with with this constructor, we will load the image with the the imported pygame modules, also intializing the parent screen
-        self.image = pygame.image.load(r"snake game/resources/resources/apple.jpg").convert()
+        self.image = pygame.image.load(r"snake game\resources\apple.jpg").convert()
         self.parent_screen = parent_screen # this refers to the main screen (surface) in the Game class
         self.x = SIZE * 3   # here we are just setting the position of the apple
         self.y = SIZE * 3
@@ -26,7 +26,7 @@ class Snake: #Next object is the snake, so we make a class
     def __init__(self, parent_screen, length): # in this initializing constructor, which we will need for all of the, we add a new parameter length which controls size of the snake.
         self.length = length
         self.parent_screen = parent_screen
-        self.block = pygame.image.load(r"snake game/resources/resources/block.jpg").convert()
+        self.block = pygame.image.load(r"snake game/resources/block.jpg").convert()
         self.x = [SIZE] * length
         self.y = [SIZE] * length
         self.direction = 'down' # this we initializing that the snake goes down when we start the game.
@@ -99,7 +99,7 @@ class Game: # game class is the where we run everything and anything non specifi
         return False
     
     def render_bg_image(self):
-        bg = pygame.image.load(r"snake game\resources\resources\background.jpg")
+        bg = pygame.image.load(r"snake game\resources\background.jpg")
         self.surface.blit(bg, (0, 0))
 
     def play(self): # we also create a play constructor which call for the snake to walk and for the apple to display on the screen
@@ -110,7 +110,7 @@ class Game: # game class is the where we run everything and anything non specifi
         pygame.display.flip()
 
         if self.is_collision(self.snake.x[0], self.snake.y[0], self.apple.x, self.apple.y): # here we are saying once the snake collides with the apple it increases it's length and the apple moves to a random spot
-            sound = pygame.mixer.Sound(r"snake game\resources\1_snake_game_resources_ding.mp3")
+            sound = pygame.mixer.Sound(r"snake game/resources/1_snake_game_resources_ding.mp3")
             pygame.mixer.Sound.play(sound)
             self.snake.increase_length()
             self.apple.move()
