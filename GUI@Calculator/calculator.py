@@ -29,45 +29,42 @@ class Calculator(ctk.CTk):
         self.mainloop()
 
     def create_widgets(self):
-        # Fonts
+    # Fonts
         main_font = ctk.CTkFont(family=FONT, size=NORMAL_FONT_SIZE)
         result_font = ctk.CTkFont(family=FONT, size=OUTPUT_FONT_SIZE)
-        
+
         # Output labels
         OutputLabel(self, 0, 'SE', main_font, self.formula_string)  # Formula
         OutputLabel(self, 1, 'E', result_font, self.result_string)  # Result
 
         # Clear (AC) button
         Button(
-            parent=self, 
+            parent=self,
             func=self.clear,
-            text=OPERATORS['clear']['text'], 
-            col=OPERATORS['clear']['col'], 
+            text=OPERATORS['clear']['text'],
+            col=OPERATORS['clear']['col'],
             row=OPERATORS['clear']['row'],
             font=main_font
         )
-        
+
         # Percentage button
         Button(
-            parent=self, 
+            parent=self,
             func=self.percent,
-            text=OPERATORS['percent']['text'], 
-            col=OPERATORS['percent']['col'], 
+            text=OPERATORS['percent']['text'],
+            col=OPERATORS['percent']['col'],
             row=OPERATORS['percent']['row'],
             font=main_font
         )
-        
-        # Invert button with image
-        invert_image = ctk.CTkImage(
-            light_image=Image.open(OPERATORS['invert']['image_path']['light']),
-            dark_image=Image.open(OPERATORS['invert']['image_path']['dark']),
-        )
-        ImageButton(
-            parent=self,  
-            func=self.invert, 
-            col=OPERATORS['invert']['col'], 
-            row=OPERATORS['invert']['row'], 
-            image=invert_image
+
+        # Invert (±) button
+        Button(
+            parent=self,
+            func=self.invert,
+            text='±',
+            col=OPERATORS['invert']['col'],
+            row=OPERATORS['invert']['row'],
+            font=main_font
         )
 
         # Number buttons
@@ -82,31 +79,17 @@ class Calculator(ctk.CTk):
                 span=data['span']
             )
 
-            #math buttons
-            for operator, data in MATH_POSITIONS.items():
-                if data['image path']:
-                    divide_image = ctk.CTkImage(
-                        light_image= Image.open(data['image path']['dark']),
-                        dark_image= Image.open(data['image path']['light']),
-                    )
-
-                    MathImageButton(
-                        parent = self, 
-                        operator = operator, 
-                        func = self.math_press, 
-                        col = data['col'], 
-                        row = data['row'], 
-                        image = divide_image)
-                else:
-                    MathButton(
-                        parent = self, 
-                        text = data['character'], 
-                        operator = operator, 
-                        func = self.math_press, 
-                        col = data['col'], 
-                        row = data['row'], 
-                        font = main_font
-                    )
+        # Math buttons
+        for operator, data in MATH_POSITIONS.items():
+            MathButton(
+                parent=self,
+                text=data['character'],
+                operator=operator,
+                func=self.math_press,
+                col=data['col'],
+                row=data['row'],
+                font=main_font
+            )
 
 
     def num_press(self, value):
@@ -155,10 +138,11 @@ class Calculator(ctk.CTk):
         
     def percent(self):
         if self.display_nums:
-            current_number = float(''.join)
+            current_number = float(''.join(self.display_nums))
             percent_number = current_number / 100
             self.display_nums = list(str(percent_number))
             self.result_string.set(''.join(self.display_nums))
+
 
     def invert(self):
         current_number = ''.join(self.display_nums)
