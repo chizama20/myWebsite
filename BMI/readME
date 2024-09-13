@@ -1,0 +1,44 @@
+BMI Tracking System with Calendar Integration
+
+
+OVERVIEW
+
+This project is a BMI (Body Mass Index) Tracking System integrated with a calendar to help users log and visualize their BMI data over time. The application allows users to input their height and weight, automatically calculate their BMI, save the data, and then view it in a calendar format by year.
+
+
+FEATURES
+
+Real-time BMI Calculation: Users can input their height and weight, and the app will calculate their BMI instantly.
+Data Logging: Save your BMI data with the current date.
+Calendar View: Display your saved BMI data on a calendar to track changes over time.
+Customizable Interface: The app is built with customtkinter for a modern and customizable user interface.
+
+
+PROJECT STRUCTURE
+
+bmi_app.py:
+This file contains the logic and user interface for the BMI tracking system. The key components are:
+
+App Class: The main application class that sets up the BMI tracking interface. It manages the height and weight inputs, calculates the BMI, and updates the display.
+
+ResultText Class: A custom label that displays the calculated BMI. It uses customtkinter for styling.
+
+WeightInput Class: A custom frame that allows users to input their weight. It includes buttons for adjusting the weight and a display showing the current weight.
+
+HeightInput Class: A custom frame with a slider for setting the user's height. The height is displayed in meters and centimeters.
+
+UnitSwitcher Class: A button that can be extended in the future to switch between metric and imperial units.
+
+calendar_app.py:
+This file handles the calendar interface and displays the BMI data saved in bmi_data.json.
+
+showCal Function: The main function that creates a new window to display the calendar for a given year. It also fetches and displays BMI entries logged for that year.
+
+settings.py:
+This file contains settings for the application's appearance, such as fonts and colors, which are used across different parts of the application.
+
+
+FUTURE CHANGES
+Add unit switching between metric and imperial units.
+Implement graphs to visualize BMI trends over time.
+Enable data export to CSV or Excel for further analysis.
