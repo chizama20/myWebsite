@@ -388,6 +388,29 @@ article .icon {
   border-color: rgb(163, 163, 163);
 }
 
+
+/* Barber Section Photos */
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;
+  margin: 2rem auto;
+  padding: 1rem;
+  max-width: 1200px;
+}
+
+.gallery-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  object-fit: cover; /* Ensures uniform scaling of images */
+  transition: transform 0.3s ease-in-out;
+}
+
+.gallery-container img:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
 /* CONTACT */
 
 #contact {
