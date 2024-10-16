@@ -1,23 +1,44 @@
 import requests
-from bs4 import BeautifulSoup
 
-# URL of the page to scrape
-url = 'https://www.example.com/fuel-prices'  # Replace with the actual URL
-
-# Send a GET request to fetch the raw HTML content
-response = requests.get(url)
-
-# Check if the request was successful
-if response.status_code == 200:
-    # Parse the HTML content with BeautifulSoup
-    soup = BeautifulSoup(response.content, 'html.parser')
+def get_basic_trends(zip_code):
+    url = "https://www.gasbuddy.com/graphql"
     
-    # Find the specific element containing fuel prices
-    # You need to inspect the page structure to find the correct tag and class
-    fuel_prices = soup.find_all('div', class_='price')  # Adjust this to match the site's structure
+    query = {
+        "operationName": "LocationBySearchTerm",
+        "variables": {
+            "search": zip_code
+        },
+        "query": """
+        query LocationBySearchTerm($search: String!) {
+          locationBySearchTerm(search: $search) {
+            trends {
+              areaName
+              country
+              today
+              todayLow
+              # Remove any additional fields for now
+            }
+          }
+        }
+        """
+    }
+
+    headers = {
+        "Content-Type": "application/json",
+        "User-Agent": "Mozilla/5.0",
+        "Referer": "https://www.gasbuddy.com/",
+        "Origin": "https://www.gasbuddy.com"
+    }
+
+    response = requests.post(url, json=query, headers=headers)
     
-    # Loop through and print the fuel prices
-    for price in fuel_prices:
-        print(price.text.strip())
-else:
-    print(f"Failed to retrieve the page. Status code: {response.status_code}")
+    # Print the raw response for debugging
+    if response.status_code == 200:
+        data = response.json()
+        print(data)  # Print the entire response for debugging
+    else:
+        print(response.text)  # Print the raw response text
+
+# Example usage:
+zip_code = "90210"  # Enter your ZIP code
+get_basic_trends(zip_code)

@@ -1,0 +1,8 @@
+2024-10-11 16:47:59,487 - INFO - Scraping E85 prices from https://www.e85prices.com/
+2024-10-11 16:47:59,698 - INFO - Successfully saved 0 prices to gas_prices.csv.
+2024-10-11 16:48:26,294 - INFO - Scraping E85 prices from https://www.e85prices.com/
+2024-10-11 16:48:26,499 - INFO - Successfully saved 0 prices to gas_prices.csv.
+2024-10-11 16:48:34,500 - INFO - Scraping Gasoline prices from https://www.gasbuddy.com/
+2024-10-11 16:48:34,781 - INFO - Successfully saved 0 prices to gas_prices.csv.
+2024-10-11 16:48:41,781 - INFO - Scraping Gasoline prices from https://www.speedway.com/
+2024-10-11 16:48:42,575 - INFO - Successfully saved 0 prices to gas_prices.csv.
