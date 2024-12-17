@@ -15,8 +15,8 @@ def get_basic_trends(zip_code):
               areaName
               country
               today
-              todayLow
-              # Remove any additional fields for now
+              todayLow-
+              
             }
           }
         }
@@ -32,13 +32,25 @@ def get_basic_trends(zip_code):
 
     response = requests.post(url, json=query, headers=headers)
     
-    # Print the raw response for debugging
     if response.status_code == 200:
         data = response.json()
-        print(data)  # Print the entire response for debugging
+        if "data" in data and "locationBySearchTerm" in data["data"]:
+            trends = data["data"]["locationBySearchTerm"].get("trends", [])
+            if trends:
+                for trend in trends:
+                    print(f"Area Name: {trend.get('areaName')}")
+                    print(f"Country: {trend.get('country')}")
+                    print(f"Today's Price: {trend.get('today')}")
+                    print(f"Today's Low Price: {trend.get('todayLow')}")
+                    print("-" * 40)
+            else:
+                print("No trends data found.")
+        else:
+            print("No data found for the given ZIP code.")
     else:
-        print(response.text)  # Print the raw response text
+        print(f"Request failed with status code: {response.status_code}")
+        print(response.text)  
 
-# Example usage:
-zip_code = "90210"  # Enter your ZIP code
+
+zip_code = "48202" 
 get_basic_trends(zip_code)
