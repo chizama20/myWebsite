@@ -16,7 +16,7 @@ def get_basic_trends(zip_code):
               areaName
               country
               today
-              todayLow
+              todayLow 
             }
           }
         }

@@ -5,7 +5,7 @@ import openai
 
 app = Flask(__name__)
 
-# Set your Amadeus API access token
+# here we set the Amadeus API access token
 access_token = 'BLMUuXruR4tIXGywdos16AESDrG7'
 url = 'https://test.api.amadeus.com/v2/shopping/flight-offers'
 headers = {
@@ -34,7 +34,7 @@ def home():
 @app.route('/find-flights', methods=['POST'])
 def find_flights():
     user_input = request.json.get('query')
-    # Process user input using OpenAI to extract relevant details
+    #trying to get user input using OpenAI to extract relevant details
     flight_details = process_user_input(user_input)
 
     if flight_details:
@@ -46,7 +46,7 @@ def find_flights():
             'max': 5
         }
 
-        # Make the GET request to the Amadeus API
+        #GET request to the Amadeus API
         try:
             response = requests.get(url, headers=headers, params=params)
             response.raise_for_status()  # Raise an error for bad responses
