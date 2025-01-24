@@ -30,6 +30,6 @@ def bubble_sort_visualize(arr):
     plt.show()
 
 np.random.seed(0)
-arr = np.random.randint(1, 50, 10)
+arr = np.random.randint(1, 1000, 100)
 
 bubble_sort_visualize(arr)
